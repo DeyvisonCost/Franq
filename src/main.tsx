@@ -1,7 +1,7 @@
 import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { AppRoutes } from '@/routes/Routes'
+import { AppRoutes } from '@/routes/AppRoutes'
 import './global.css'
 
 const rootElement = document.getElementById('root')
