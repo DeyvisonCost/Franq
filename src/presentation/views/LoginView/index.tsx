@@ -12,9 +12,8 @@ const LoginView = () => {
 
   const handleLogin = () => {
     try {
-      login(email, password) // Usando o login do hook useAuth
-      alert('Login bem-sucedido!')
-      navigate('/dashboard') // Redireciona para o Dashboard após o login
+      login(email, password)
+      navigate('/dashboard')
     } catch (error) {
       alert(error.message)
     }

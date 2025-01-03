@@ -7,7 +7,12 @@ export const AuthService = {
   },
 
   login: (email: string, password: string) => {
+    if (!email || !password) {
+      throw new Error('Email e senha são obrigatórios.')
+    }
+
     const user = JSON.parse(localStorage.getItem('user') || '{}')
+
     if (user.email === email && user.password === password) {
       const token = 'fake-jwt-token'
       localStorage.setItem('token', token)
@@ -17,11 +22,11 @@ export const AuthService = {
   },
 
   isAuthenticated: () => {
-    return !!localStorage.getItem('token')
+    const token = localStorage.getItem('token')
+    return !!token
   },
 
   logout: () => {
     localStorage.removeItem('token')
-    localStorage.removeItem('user')
   },
 }

@@ -2,6 +2,7 @@ import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import { AppRoutes } from '@/routes/AppRoutes'
+import { AuthProvider } from '@/store/AuthContext'
 import './global.css'
 
 const rootElement = document.getElementById('root')
@@ -11,6 +12,8 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <AppRoutes />
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   </StrictMode>
 )

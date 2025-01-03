@@ -7,6 +7,7 @@ import { ROUTES } from '@/config/routes'
 import { MainLayout } from '@/presentation/layouts/MainLayout'
 
 import { PrivateRoute } from './PrivateRoute'
+import { PublicRoute } from './PublicRoute'
 
 const HomeView = lazy(async () => await import('@/presentation/views/HomeView'))
 const LoginView = lazy(async () => await import('@/presentation/views/LoginView'))
@@ -19,11 +20,27 @@ export const AppRoutes: FC = () => {
     <Router>
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
-          {/* Rotas com o layout principal (Header) */}
           <Route element={<MainLayout />}>
             <Route path={ROUTES.HOME} element={<HomeView />} />
-            <Route path={ROUTES.LOGIN} element={<LoginView />} />
-            <Route path={ROUTES.SIGNIN} element={<SigninView />} />
+
+            <Route
+              path={ROUTES.LOGIN}
+              element={
+                <PublicRoute>
+                  <LoginView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path={ROUTES.SIGNIN}
+              element={
+                <PublicRoute>
+                  <SigninView />
+                </PublicRoute>
+              }
+            />
+
+            {/* Rotas privadas protegidas */}
             <Route
               path={ROUTES.DASHBOARD}
               element={
